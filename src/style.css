@@ -1,0 +1,33 @@
+/*
+    Colors: [
+        Outer space (Crayola): #2E3532
+        Rich Black (FOGRA39):  #080708
+        Shadow Blue:           #848FA5
+        Blue (Crayola):        #3772FF
+        Alice blue:            #E7ECEF
+    ]
+
+    Fonts: [
+        font-family: 'Caudex', serif;
+        font-family: 'Martel', serif;
+        font-family: 'Muli', sans-serif;
+    ]
+ */
+
+body {
+  background-color: #fffeff;
+}
+
+header {
+  color: black;
+  text-align: center;
+}
+
+header h1 {
+  font-family: "Muli", sans-serif;
+}
+
+header h3 {
+  font-family: "Caudex", serif;
+  padding: 0%;
+}
