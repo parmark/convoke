@@ -3,32 +3,25 @@ import Cards from "./Cards.jsx";
 
 function BoosterQuery() {
   const [set, changeSet] = useState("jtn");
-  const [sets, changeSets] = useState([
-    {
-      name: "Aether Revolt",
-      code: "aer",
-    },
-    {
-      name: "Theros Beyond Death",
-      code: "thb",
-    },
-  ]);
+  const [sets, changeSets] = useState([]);
   const [isLoading, changeIsLoading] = useState(false);
   const [booster, changeBooster] = useState([]);
 
   useEffect(() => {
-    /* fetch("https://api.scryfall.com/sets")
-      .then((response) => response.json())
-      .then((list) => list.data)
-      .then((data) => {
-        changeSets(
-          data.map(({ name, code }) => ({
-            name,
-            code,
-          }))
-        );
-      });
-    changeIsLoading(false); */
+    localStorage.getItem("sets")
+      ? changeSets(JSON.parse(localStorage.getItem("sets")))
+      : fetch("https://api.scryfall.com/sets")
+          .then((response) => response.json())
+          .then((list) => list.data)
+          .then((data) => {
+            let sets = data.map(({ name, code }) => ({
+              name,
+              code,
+            }));
+            changeSets(sets);
+            localStorage.setItem("sets", JSON.stringify(sets));
+          });
+    changeIsLoading(false);
   }, []);
 
   const handleSubmit = (event) => {
@@ -37,8 +30,9 @@ function BoosterQuery() {
       .then((response) => response.json())
       .then((data) => {
         changeBooster(
-          data.cards.map(({ imageUrl }) => ({
+          data.cards.map(({ imageUrl, name }) => ({
             imageUrl,
+            name,
           }))
         );
       });
