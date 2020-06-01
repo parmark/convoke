@@ -8,7 +8,7 @@
     "prettier/react"
   ],
   "rules": {
-    "react/proptypes": 0,
+    "react/prop-types": 0,
     "no-console": 1
   },
   "plugins": ["react", "import", "jsx-a11y"],
