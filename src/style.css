@@ -16,10 +16,10 @@
 
 body {
   background-color: #080708;
+  color: #fffeff;
 }
 
 header {
-  color: #fffeff;
   text-align: center;
 }
 
@@ -31,3 +31,32 @@ header h3 {
   font-family: "Caudex", serif;
   padding: 0%;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  transition: all 0.2s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.5);
+}
+
+#cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: auto;
+  width: 90%;
+}
+
+/* @media screen and (min-width: 1100px) {
+  #cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+} */
