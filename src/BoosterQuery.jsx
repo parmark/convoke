@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Cards from "./Cards.jsx";
+import LoadingSymbol from "./LoadingSymbol.jsx";
 
 function BoosterQuery() {
   const [set, changeSet] = useState("jtn");
   const [sets, changeSets] = useState([]);
   const [isLoading, changeIsLoading] = useState(false);
+  const [isSetLoading, changeIsSetLoading] = useState(false);
   const [booster, changeBooster] = useState([]);
 
   useEffect(() => {
@@ -26,6 +28,8 @@ function BoosterQuery() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    changeBooster([]);
+    changeIsSetLoading(true);
     fetch(`https://api.magicthegathering.io/v1/sets/${set}/booster`)
       .then((response) => response.json())
       .then((data) => {
@@ -35,6 +39,7 @@ function BoosterQuery() {
             name,
           }))
         );
+        changeIsSetLoading(false);
       });
   };
 
@@ -57,7 +62,7 @@ function BoosterQuery() {
         </select>
         <input type="submit" value="Crack" />
       </form>
-      <Cards cards={booster} />
+      {isSetLoading ? <LoadingSymbol /> : <Cards cards={booster} />}
     </div>
   );
 }
